@@ -147,6 +147,26 @@ class User_del(View):
         id=kwargs.get("pk")
         User.objects.get(id=id).delete()
         return redirect("register")
+    
+    
+class Update_user(View):
+    
+    def get(self,request,**kwargs):
+        
+        id=kwargs.get("pk")
+        data=User.objects.get(id=id)
+        form=Register(instance=data)
+        return render(request,"register.html",{"form":form})
+    
+    def post(self,request,**kwargs):
+        
+        id=kwargs.get("pk")
+        data=User.objects.get(id=id)
+        form=Register(request.POST,instance=data)
+        
+        if form.is_valid():
+            form.save()
+        return redirect("login")        
 
 
 

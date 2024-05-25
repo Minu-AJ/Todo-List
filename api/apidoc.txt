@@ -1,0 +1,23 @@
+
+class:APIView
+method:post
+url:http://127.0.0.1:8000/api/register/
+data:
+{
+  "id": 11,
+  "username": "sreejith",
+  "email": "sreejith@gmail.com",
+  "password": "sreejith@123",
+  "first_name": "sreejith",
+  "last_name": "m"
+}
+
+-----------------------------------------------------------------------------------
+
+class:Viewset
+method:get,post,put,delete
+url:http://127.0.0.1:8000/api/todos/
+
+-----------------------------------------------------------------------------------
+
+

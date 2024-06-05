@@ -24,7 +24,8 @@ schema_view = get_schema_view(
 
 router=DefaultRouter()
 
-router.register('todomodel',Todomodelviewset,basename="todomodelviewset")
+router.register('todomodel',Todomodelviewset,basename="todomodel")
+# router.register('todos',Todoviewsetview,basename="todos")
 
 urlpatterns = [
     path('register/',Userregister.as_view(),name="register"),

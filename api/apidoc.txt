@@ -1,23 +1,110 @@
+schema: User
 
-class:APIView
-method:post
-url:http://127.0.0.1:8000/api/register/
-data:
-{
-  "id": 11,
-  "username": "sreejith",
-  "email": "sreejith@gmail.com",
-  "password": "sreejith@123",
-  "first_name": "sreejith",
-  "last_name": "m"
-}
+attributes: sername,email,password,first_name,last_name
 
------------------------------------------------------------------------------------
+# Api for creating a new account
 
-class:Viewset
-method:get,post,put,delete
-url:http://127.0.0.1:8000/api/todos/
+class: APIView
+method: post
+url: http://127.0.0.1:8000/api/register/
+body: {username,email,password,first_name,last_name}
+authentication: nill
+
 
 -----------------------------------------------------------------------------------
 
+
+# Api for fetching token
+
+  url: http://127.0.0.1:8000/api/token/
+  method: post
+  body: {username,password} 
+  authentication: nill
+
+
+-----------------------------------------------------------------------------------
+
+
+schema: Taskmodel
+attributes: task_name,task_description
+class: Viewset
+
+# Api for adding a new task 
+
+  url: http://127.0.0.1:8000/api/todos/
+  method: post
+  body: {task_name,task_description}
+  authentication: TokenAuthentication
+
+# Api for listing all task details
+
+  url: http://127.0.0.1:8000/api/todos/
+  method: get
+  body: nill
+  authentication: TokenAuthentication
+
+# Api for retrieving a particular task detail
+
+  url: http://127.0.0.1:8000/api/todos/{id}
+  method: get
+  body: nill
+  authentication: TokenAuthentication
+
+# Api for updating a task 
+
+  url: http://127.0.0.1:8000/api/todos/{id}
+  method: put
+  body: {task_name,task_description}
+  authentication: TokenAuthentication
+
+# Api for deleting a task 
+
+  url: http://127.0.0.1:8000/api/todos/{id}
+  method: delete
+  body: nill
+  authentication: TokenAuthentication
+
+
+-----------------------------------------------------------------------------------
+
+
+class: ModelViewSet
+
+# Api for adding a new task 
+
+  url: http://127.0.0.1:8000/api/todomodel/
+  method: post
+  body: {task_name,task_description}
+  authentication: TokenAuthentication
+
+# Api for listing all task details 
+
+  url: http://127.0.0.1:8000/api/todomodel/
+  method: get
+  body: nill
+  authentication: OwneTokenAuthenticationrOnly
+
+# Api for updating a new task 
+
+  url: http://127.0.0.1:8000/api/todomodel/{id}
+  method: put
+  body: {task_name,task_description}
+  authentication: TokenAuthentication
+
+# Api for retrieving a particular task 
+
+  url: http://127.0.0.1:8000/api/todomodel/{id}
+  method: get
+  body: nill
+  authentication: TokenAuthentication
+
+# Api for deleting an existing task 
+
+  url: http://127.0.0.1:8000/api/todomodel/
+  method: delete
+  body: nill
+  authentication: TokenAuthentication
+
+
+-----------------------------------------------------------------------------------
 

@@ -8,6 +8,7 @@ from todo_work.models import Taskmodel
 
 from rest_framework.viewsets import ViewSet, ModelViewSet
 from rest_framework import authentication, permissions
+from api.permissions import OwnerOnly
 
 
 class Userregister(APIView):
@@ -110,7 +111,7 @@ class Todomodelviewset(ModelViewSet):
     queryset=Taskmodel.objects.all()
     serializer_class=Todoserializer
     authentication_classes=[authentication.TokenAuthentication]
-    permission_classes=[permissions.IsAuthenticated]
+    permission_classes=[OwnerOnly]
     
     def perform_create(self, serializer):
         return serializer.save(user=self.request.user)
